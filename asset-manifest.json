@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/portfolio-website/static/css/main.2b92fb78.css",
+    "main.js": "/portfolio-website/static/js/main.bd9405b1.js",
+    "static/media/hoverboard.png": "/portfolio-website/static/media/hoverboard.559ab74182bcfe20ac38.png",
+    "static/media/TuskerGrotesk-9800Super.ttf": "/portfolio-website/static/media/TuskerGrotesk-9800Super.996f379c60f198baf688.ttf",
+    "static/media/NeueMontreal-Medium.otf": "/portfolio-website/static/media/NeueMontreal-Medium.15b1070b8dac57958acf.otf",
+    "static/media/star.png": "/portfolio-website/static/media/star.3c9e23a0019381f633aa.png",
+    "static/media/TuskerGrotesk-4500Medium.otf": "/portfolio-website/static/media/TuskerGrotesk-4500Medium.87c5e3c2821e42226cd7.otf",
+    "static/media/headshot.jpg": "/portfolio-website/static/media/headshot.7deb4ac3aafec5e5c05a.jpg",
+    "index.html": "/portfolio-website/index.html",
+    "main.2b92fb78.css.map": "/portfolio-website/static/css/main.2b92fb78.css.map",
+    "main.bd9405b1.js.map": "/portfolio-website/static/js/main.bd9405b1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b92fb78.css",
+    "static/js/main.bd9405b1.js"
+  ]
+}
