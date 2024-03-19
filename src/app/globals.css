@@ -26,6 +26,12 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.mask {
+  opacity: 0;
+  fill: none; 
+  stroke: #fff;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
