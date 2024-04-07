@@ -1,60 +1,39 @@
-'use client';
+'use client'
 
 // import { HomeView } from 'src/sections/home/view'
 import { Box, Typography } from '@mui/material';
-import { Inspiration, Inter } from 'next/font/google';
-import VaraText from 'src/utils/VaraText';
+import HomeSection from 'src/sections/home';
+import { motion } from "framer-motion";
+import BlogSection from 'src/sections/blog';
+import { useEffect, useRef, useState } from 'react';
+import useScrollPosition from 'src/hooks/useScrollPosition';
 
-import Image from 'next/image';
-import mainLogo from 'src/assets/mainLogo.svg';
-import MainLogo from 'src/components/settings/mainLogo';
-import useElementVisibility from 'src/hooks/useElementVisibility';
 // ----------------------------------------------------------------------
 
-// export const metadata = {
-//   title: 'Minimal: The starting point for your next project',
-// }
-
-const inspiration = Inspiration({
-  weight: ['400'],
-  style: ['normal'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-import HomeSection from 'src/sections/home';
-import zIndex from '@mui/material/styles/zIndex';
-import BlogSection from 'src/sections/blog';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import DynamicFrame from 'src/components/frame';
-// const inspiration = "'Inspiration', cursive";
-const inter = "'Inter', cursive";
-
 export default function HomePage() {
-  const [ expand, setExpand ] = useState<Boolean>(false);
   const containerRef = useRef<HTMLElement | null>(null);
-  // const mainRef = useRef<HTMLElement | null>(null);
+  const { y } = useScrollPosition(containerRef);
+  
+  const [dimensions, setDimensions] = useState({
+    width: 'calc(100vw - 30px)',
+    height: 'calc(100vh - 30px)',
+  });
+
   const blogRef = useRef<HTMLElement | null>(null);
 
-
-
   useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      const handleScroll = () => {
-        const containerScrollPosition = containerRef.current!.scrollTop;
-        const blogPosition = blogRef.current!.offsetTop - containerRef.current!.offsetTop;
-
-        if (containerScrollPosition >= blogPosition) {
-          setExpand(true);
-        }
-      }
-
-      container.addEventListener('scroll', handleScroll)
-
-      return () => container.removeEventListener('scroll', handleScroll);
+    if (y > 500) { // Assuming the scroll position threshold is 100
+      setDimensions({
+        width: 'calc(100vw - 15px)',
+        height: 'calc(100vh - 15px)',
+      });
+    } else {
+      setDimensions({
+        width: 'calc(100vw - 70px)',
+        height: 'calc(100vh - 70px)',
+      });
     }
-  }, [])
+  }, [containerRef, y])
 
   return (
     <Box
@@ -68,22 +47,18 @@ export default function HomePage() {
         zIndex: 0,
       }}
     >
-      <DynamicFrame expand={true} />
-
       <Box
-        component="main"
+        component={motion.div}
         ref={containerRef}
         sx={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          height: 'calc(100vh - 30px)', //fix for responsive
-          width: 'calc(100vw - 30px)',
-          //   display: 'flex',
-          // flexDirection: 'column',
-          // justifyContent: 'center',
-          // alignItems: 'center',
+          transition: '0.3s',
+          height: dimensions.height,
+          width: dimensions.width,
+          border: '1px solid #E0C8A6',
           overflowY: 'scroll',
           zIndex: 100,
         }}
